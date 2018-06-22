@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Picker</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+	*{
+		box-sizing : border-box;
+		border-radius:9px;
+	}
+
+	:root {
+		--yellow: #f4cc70;
+		--red: #ee0000;
+		--green: #6ab187;
+		--blue: #20948b;
+		--violet: #c0f;
+		--orange: #de7a22;
+    }
+
+	body{
+		background-color: var(--orange);
+		display:flex;
+		flex-direction:column;
+		width:100%;
+		justify-content:center;
+		align-items:center;
+		font-family: arial, sans-serif;
+		color:white;
+	}
+	div{
+		text-align: center;
+	}
+
+	#botonera{
+		display:flex;
+		justify-content:space-around;
+		width: 80%;
+	}
+
+	h1{flex:1;
+		border: 2px double var(--green);
+		padding:20px 50px;
+		background-color: var(--blue);
+		margin: 10px
+
+	}
+	.grilla{
+		display:flex;
+		flex:1;
+		width:94%;
+		margin: 0% 3%;
+	}
+	.col{
+		height: 90vh;
+		width:90%;
+		flex:1;
+		display:flex;
+		/*flex-direction:column;*/
+		justify-content:center;
+		flex-wrap: wrap;
+
+	}
+	.cuadro{
+		
+		text-align: center;
+		border:10px solid transparent;
+		
+		font-size: 6em;
+		padding: 20px;
+		margin:10px;
+		width:40%;
+	}
+
+	
+	.yellow{
+		background-color: var(--yellow);
+	}
+	.red{
+		background-color: var(--red);
+	}
+	.green{
+		background-color: var(--green);
+	}
+	.blue{
+		background-color: var(--blue);
+	}
+	.violet{
+		background-color: var(--violet);
+	}
+	.orange{
+		background-color: var(--orange);
+	}
+	.pressed{
+
+		border:10px solid #eee;
+
+	}
+	.sel1{
+		border:10px solid red;
+		color:red;
+	}
+	.sel2{
+		border:10px solid blue;
+		color:blue;
+	}
+	
+
+	</style>
+</head>
+<body>
+<div id="botonera"><h1  id="btnSortear">SORTEAR</h1><h1 id="btnSeparar">SEPARAR</h1><h1 id="btnLimpiar">LIMPIAR</h1> </div>	
+<div class="grilla">
+	<div class="col">
+		<div class="cuadro green" id="j1">1</div>
+		<div class="cuadro green" id="j2">2</div>
+		<div class="cuadro green" id="j3">3</div>
+		<div class="cuadro green" id="j4">4</div>
+		<div class="cuadro green" id="j5">5</div>
+		<div class="cuadro green" id="j6">6</div>
+	</div>
+
+</div>
+<script type="text/javascript">
+
+
+var cuantos=6;	
+var r=0;
+var grupo=[];
+var eq1=[];
+var eq2=[];
+
+document.getElementById("btnSeparar").addEventListener("click",separar);
+document.getElementById("btnSortear").addEventListener("click",sort);
+document.getElementById("btnLimpiar").addEventListener("click",limpiar);
+
+function limpiar(){
+var cuantos=6;	
+var r=0;
+var grupo=[];
+var eq1=[];
+var eq2=[];
+for (j=0;j<cuantos; j++){
+document.getElementsByClassName('cuadro')[j].classList.remove('sel1');
+document.getElementsByClassName('cuadro')[j].classList.remove('sel2');
+}
+}
+function sort(){
+r=Math.floor((Math.random() * cuantos) + 1);
+console.log(r);
+document.getElementsByClassName('cuadro')[r-1].classList.add('sel1');
+
+}
+
+function separar(){
+	
+	//carga
+	for (var i=0; i<cuantos;i++){
+		console.log(i);
+		grupo[i]=i+1;
+
+	}
+	console.clear();
+	console.table(grupo);
+	//separa
+	for(var i=0; i<Math.floor((cuantos)/2);i++){
+    r=Math.floor((Math.random() * grupo.length));
+
+    console.log(r+" "+i);
+    
+    eq1=eq1.concat(grupo.splice(r, 1));
+
+		
+	}
+
+	console.table(eq1);
+	for(var j=0; j<eq1.length; j++){
+	
+    document.getElementsByClassName('cuadro')[eq1[j]-1].classList.add('sel1');
+    
+	}
+	console.table(grupo);
+
+	for(var j=0; j<grupo.length; j++){
+	
+    document.getElementsByClassName('cuadro')[grupo[j]-1].classList.add('sel2');
+    
+	}
+}
+
+
+</script>
+</body>
+</html>
